@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   Ticket,
   CheckCircle2,
@@ -145,7 +145,27 @@ export default function Reports() {
     error: agentsError = null
   } = useAgents();
 
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  // Automatic real-time reports synchronization (auto-sync without manual refresh)
+  useEffect(() => {
+    if (!fetchTickets) return;
+
+    // Background auto-refresh polling every 12 seconds
+    const interval = setInterval(() => {
+      fetchTickets().catch(() => {});
+    }, 12000);
+
+    // Immediate auto-sync when browser window or tab regains focus
+    const handleFocus = () => {
+      fetchTickets().catch(() => {});
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [fetchTickets]);
 
   const loading = ticketsLoading || agentsLoading;
   const error = ticketsError || agentsError;
@@ -275,17 +295,6 @@ export default function Reports() {
     return list;
   }, [agents, tickets]);
 
-  const handleRefresh = async () => {
-    if (fetchTickets) {
-      setIsRefreshing(true);
-      try {
-        await fetchTickets();
-      } finally {
-        setTimeout(() => setIsRefreshing(false), 450);
-      }
-    }
-  };
-
   const handleExportCSV = () => {
     const now = new Date();
     const dateStr = now.toISOString().split('T')[0];
@@ -368,7 +377,7 @@ export default function Reports() {
           <AlertCircle size={44} className="reports-error-icon" />
           <h3 className="reports-error-title">Unable to Load Analytics Data</h3>
           <p className="reports-error-desc">{error}</p>
-          <Button variant="primary" onClick={handleRefresh}>
+          <Button variant="primary" onClick={() => fetchTickets && fetchTickets()}>
             <RotateCcw size={16} />
             Retry Connection
           </Button>
@@ -384,15 +393,10 @@ export default function Reports() {
         subtitle="Dynamic ticket intelligence, resolution velocity, and team workload analytics."
         actions={
           <div className="reports-header-actions">
-            <Button
-              variant="secondary"
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-              className="reports-refresh-btn"
-            >
-              <RotateCcw size={15} className={isRefreshing ? 'spin-icon' : ''} />
-              {isRefreshing ? 'Syncing...' : 'Refresh Data'}
-            </Button>
+            <div className="live-auto-sync-badge" title="Reports & Analytics update automatically in real time without manual refresh">
+              <span className="live-pulse-dot" />
+              <span>Auto-Sync</span>
+            </div>
             <Button
               variant="primary"
               onClick={handleExportCSV}

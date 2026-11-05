@@ -1,6 +1,23 @@
 {
   "tickets": [
     {
+      "id": "TCK-1006",
+      "status": "OPEN",
+      "title": "do not app and app open lot of time",
+      "description": "when i open app load i more and more 5 min to open app",
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "assignedAgentId": "agt-1",
+      "dueDate": "2026-11-05T12:00:00.000Z",
+      "customer": {
+        "name": "Ashik Panchal",
+        "email": "ashikpanchal12@gmail.com",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "createdAt": "2026-11-05T11:50:27.055Z",
+      "updatedAt": "2026-11-05T11:50:45.136Z"
+    },
+    {
       "id": "TCK-1001",
       "title": "Unable to connect OAuth provider in dashboard",
       "description": "Users are reporting 500 errors when attempting to authorize Google SSO from the account settings page.",
@@ -151,6 +168,20 @@
     }
   ],
   "activities": [
+    {
+      "id": "act-1793879427093-llmi",
+      "ticketId": "TCK-1006",
+      "action": "TICKET_CREATED",
+      "type": "TICKET_CREATED",
+      "previousValue": null,
+      "newValue": "OPEN",
+      "author": {
+        "name": "Ashik Panchal",
+        "role": "Customer"
+      },
+      "description": "Ticket created by Ashik Panchal",
+      "timestamp": "2026-11-05T11:50:27.093Z"
+    },
     {
       "id": "act-1",
       "ticketId": "TCK-1001",
