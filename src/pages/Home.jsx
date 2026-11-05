@@ -5,8 +5,8 @@ import {
   Clock,
   Lock,
   ArrowRight,
-  UserCheck,
-  CheckCircle2,
+  User,
+  Key,
   BarChart3,
   Layers,
   Sparkles,
@@ -23,25 +23,15 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Home() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, login, logout, availableAgents } = useAuthContext();
+  const { user, isAuthenticated, login, logout } = useAuthContext();
   const { addToast } = useNotificationContext() || {};
 
-  const [loginMode, setLoginMode] = useState('agent'); // 'agent' | 'credentials'
-  const [selectedAgentId, setSelectedAgentId] = useState(availableAgents[0]?.id || 'agt-1');
-  const [email, setEmail] = useState('jordan.lee@supportdesk.internal');
-  const [password, setPassword] = useState('••••••••••••');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState(null);
-
-  const handleAgentSelect = (agentId) => {
-    setSelectedAgentId(agentId);
-    const agent = availableAgents.find(a => a.id === agentId);
-    if (agent) {
-      setEmail(agent.email);
-    }
-    setFormError(null);
-  };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -49,15 +39,17 @@ export default function Home() {
     setSubmitting(true);
 
     try {
-      let loggedInUser;
-      if (loginMode === 'agent') {
-        loggedInUser = await login({ agentId: selectedAgentId });
-      } else {
-        if (!email.trim() || !email.includes('@')) {
-          throw new Error('Please enter a valid work email address.');
-        }
-        loggedInUser = await login({ email: email.trim(), password });
+      if (!username.trim()) {
+        throw new Error('Please enter your work username or email address.');
       }
+      if (!password || password.length < 3) {
+        throw new Error('Please enter your password (minimum 3 characters).');
+      }
+
+      const loggedInUser = await login({
+        username: username.trim(),
+        password: password.trim()
+      });
 
       if (addToast) {
         addToast(`Welcome back, ${loggedInUser.name}! Opening Executive Dashboard...`, 'success');
@@ -211,28 +203,7 @@ export default function Home() {
                   </div>
                 </div>
               ) : (
-                /* Login Form */
                 <form className="login-form" onSubmit={handleLoginSubmit}>
-                  {/* Mode Tabs */}
-                  <div className="login-mode-tabs">
-                    <button
-                      type="button"
-                      className={`login-mode-tab ${loginMode === 'agent' ? 'active' : ''}`}
-                      onClick={() => setLoginMode('agent')}
-                    >
-                      <UserCheck size={14} />
-                      <span>Select Agent Profile</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`login-mode-tab ${loginMode === 'credentials' ? 'active' : ''}`}
-                      onClick={() => setLoginMode('credentials')}
-                    >
-                      <LogIn size={14} />
-                      <span>Work Credentials</span>
-                    </button>
-                  </div>
-
                   {formError && (
                     <div className="login-error-alert" role="alert">
                       <AlertCircle size={16} />
@@ -240,74 +211,71 @@ export default function Home() {
                     </div>
                   )}
 
-                  {loginMode === 'agent' ? (
-                    <div className="agent-selection-container">
-                      <label className="field-label">Select Active Support Engineer</label>
-                      <div className="agent-cards-grid">
-                        {availableAgents.map((agent) => {
-                          const isSelected = selectedAgentId === agent.id;
-                          return (
-                            <div
-                              key={agent.id}
-                              className={`agent-login-item ${isSelected ? 'selected' : ''}`}
-                              onClick={() => handleAgentSelect(agent.id)}
-                              role="button"
-                              tabIndex={0}
-                            >
-                              <img src={agent.avatar} alt={agent.name} className="agent-item-avatar" />
-                              <div className="agent-item-details">
-                                <div className="agent-item-name">{agent.name}</div>
-                                <div className="agent-item-role">{agent.role}</div>
-                                <div className="agent-item-email">{agent.email}</div>
-                              </div>
-                              {isSelected && (
-                                <div className="agent-selected-check">
-                                  <CheckCircle2 size={16} />
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="credentials-fields-group">
-                      <div className="form-field">
-                        <label className="field-label" htmlFor="work-email">Enterprise Work Email</label>
+                  <div className="credentials-fields-group">
+                    <div className="form-field">
+                      <label className="field-label" htmlFor="work-username">
+                        Username or Work Email
+                      </label>
+                      <div className="input-with-icon">
+                        <User size={16} className="input-field-icon" />
                         <input
-                          id="work-email"
-                          type="email"
-                          className="text-input"
-                          placeholder="agent@supportdesk.internal"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          id="work-username"
+                          type="text"
+                          className="text-input with-icon"
+                          placeholder="e.g. jordan.lee or jordan.lee@supportdesk.internal"
+                          value={username}
+                          onChange={(e) => {
+                            setUsername(e.target.value);
+                            setFormError(null);
+                          }}
+                          autoComplete="username"
                           required
                         />
                       </div>
+                    </div>
 
-                      <div className="form-field">
+                    <div className="form-field">
+                      <div className="field-label-row">
                         <label className="field-label" htmlFor="work-pass">Security Password</label>
-                        <div className="password-input-wrapper">
-                          <input
-                            id="work-pass"
-                            type={showPassword ? 'text' : 'password'}
-                            className="text-input"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                          />
-                          <button
-                            type="button"
-                            className="toggle-password-btn"
-                            onClick={() => setShowPassword(p => !p)}
-                            aria-label="Toggle password visibility"
-                          >
-                            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                          </button>
-                        </div>
+                        <span className="forgot-pass-link" title="Enterprise SLA Authentication">Active Support SLA</span>
+                      </div>
+                      <div className="input-with-icon password-input-wrapper">
+                        <Lock size={16} className="input-field-icon" />
+                        <input
+                          id="work-pass"
+                          type={showPassword ? 'text' : 'password'}
+                          className="text-input with-icon"
+                          placeholder="Enter password (e.g. admin123)"
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                            setFormError(null);
+                          }}
+                          autoComplete="current-password"
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="toggle-password-btn"
+                          onClick={() => setShowPassword(p => !p)}
+                          aria-label="Toggle password visibility"
+                        >
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
                       </div>
                     </div>
-                  )}
+
+                    <div className="login-options-row">
+                      <label className="checkbox-label">
+                        <input
+                          type="checkbox"
+                          checked={rememberMe}
+                          onChange={(e) => setRememberMe(e.target.checked)}
+                        />
+                        <span>Remember this workstation</span>
+                      </label>
+                    </div>
+                  </div>
 
                   <div className="login-action-wrapper">
                     <Button
@@ -315,14 +283,26 @@ export default function Home() {
                       variant="primary"
                       className="login-submit-btn"
                       loading={submitting}
-                      icon={<ArrowRight size={16} />}
+                      icon={<LogIn size={16} />}
                     >
-                      {submitting ? 'Authenticating...' : 'Sign In & Open Dashboard'}
+                      {submitting ? 'Verifying Credentials...' : 'Sign In & Open Dashboard'}
                     </Button>
                   </div>
 
+                  {/* Certified Support Desk Credentials Hint */}
+                  <div className="demo-credentials-box">
+                    <div className="demo-credentials-title">
+                      <Key size={13} />
+                      <span>Certified Support Desk Access:</span>
+                    </div>
+                    <div className="demo-credentials-details">
+                      <span><strong>User:</strong> <code>jordan.lee</code> (or any agent)</span>
+                      <span><strong>Pass:</strong> <code>admin123</code></span>
+                    </div>
+                  </div>
+
                   <div className="login-security-notice">
-                    <Lock size={12} />
+                    <ShieldCheck size={13} />
                     <span>Protected by APPLEN TLS 1.3 & Session Token Enforcer</span>
                   </div>
                 </form>

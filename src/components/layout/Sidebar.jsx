@@ -84,6 +84,20 @@ export default function Sidebar({
     }
   };
 
+  // Keyboard shortcut Ctrl+B / Cmd+B to toggle sidebar collapse
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        if (onToggleCollapse) {
+          onToggleCollapse();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onToggleCollapse]);
+
   return (
     <aside
       className={`app-sidebar ${isCollapsed ? 'collapsed' : 'expanded'} ${isMobileOpen ? 'mobile-visible' : ''}`}
@@ -93,14 +107,14 @@ export default function Sidebar({
       <div className="sidebar-brand-wrapper">
         <div
           className="sidebar-brand"
-          onClick={isCollapsed ? onToggleCollapse : handleBrandClick}
+          onClick={handleBrandClick}
           role="button"
           tabIndex={0}
-          title={isCollapsed ? 'Click to expand sidebar' : 'Go to Dashboard'}
+          title="Go to Executive Dashboard"
         >
           {isCollapsed ? (
-            <div className="brand-logo-collapsed">
-              <svg width="32" height="32" viewBox="0 0 46 46" fill="none">
+            <div className="brand-logo-collapsed" title="Applen Solutions - Go to Dashboard">
+              <svg width="34" height="34" viewBox="0 0 46 46" fill="none">
                 <rect width="46" height="46" rx="10" fill="#181B24" stroke="#C98A3C" strokeWidth="1.5" />
                 <path d="M14 34L23 16L32 34" stroke="url(#sidebarGold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M17 29H29" stroke="url(#sidebarGold)" strokeWidth="2.5" strokeLinecap="round"/>
@@ -131,10 +145,10 @@ export default function Sidebar({
         {/* Desktop Collapse / Expand Toggle Button */}
         <button
           type="button"
-          className="sidebar-desktop-collapse"
+          className={`sidebar-desktop-collapse ${isCollapsed ? 'collapsed-expand-btn' : ''}`}
           onClick={onToggleCollapse}
-          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          aria-label={isCollapsed ? 'Expand sidebar (Ctrl+B)' : 'Collapse sidebar (Ctrl+B)'}
+          title={isCollapsed ? 'Expand sidebar (Ctrl+B)' : 'Collapse sidebar (Ctrl+B)'}
         >
           {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
         </button>

@@ -36,18 +36,26 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
   flex-shrink: 0;
+  transition: all var(--transition-normal);
 }
 
 .app-sidebar.collapsed .sidebar-brand-wrapper {
-  padding: 0 0.65rem;
-  justify-content: space-between;
-  gap: 0.35rem;
+  height: auto;
+  min-height: 84px;
+  padding: 0.85rem 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-bottom: 1px solid rgba(229, 178, 93, 0.12);
 }
 
 .sidebar-brand {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   transition: opacity var(--transition-fast);
   outline: none;
@@ -70,10 +78,11 @@
   padding: 0.25rem;
   border-radius: var(--radius-sm);
   transition: transform var(--transition-fast);
+  cursor: pointer;
 }
 
 .brand-logo-collapsed:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 /* Collapse / Expand Toggle Button (Desktop) */
@@ -98,24 +107,30 @@
   box-shadow: 0 0 10px rgba(201, 138, 60, 0.2);
 }
 
-.app-sidebar.collapsed .sidebar-desktop-collapse {
-  position: static;
-  transform: none;
-  width: 28px;
+.app-sidebar.collapsed .sidebar-desktop-collapse.collapsed-expand-btn {
+  width: 44px;
   height: 28px;
-  background-color: var(--charcoal-800);
+  border-radius: var(--radius-sm);
+  background: var(--charcoal-800);
   border: 1px solid rgba(229, 178, 93, 0.35);
   color: var(--gold-accent);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   z-index: 2;
   flex-shrink: 0;
 }
 
-.app-sidebar.collapsed .sidebar-desktop-collapse:hover {
-  background-color: var(--charcoal-700);
+.app-sidebar.collapsed .sidebar-desktop-collapse.collapsed-expand-btn:hover {
+  background: var(--charcoal-700);
   border-color: var(--gold-accent);
-  color: var(--sand-50);
-  transform: scale(1.06);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(229, 178, 93, 0.4);
+  transform: translateY(-1px);
 }
 
 /* Mobile Close Button */

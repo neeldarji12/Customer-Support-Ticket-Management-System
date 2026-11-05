@@ -32,24 +32,35 @@ export function AuthProvider({ children }) {
   }, [user]);
 
   /**
-   * Log in using an agent profile or email credentials
+   * Log in using work username/email and password credentials
    */
-  const login = async ({ email, password: _password, agentId }) => {
+  const login = async ({ username, password }) => {
     setLoading(true);
     try {
-      // Simulate authentic network latency
-      await new Promise(res => setTimeout(res, 250));
+      // Simulate authentic enterprise credential verification
+      await new Promise(res => setTimeout(res, 280));
+
+      const query = (username || '').trim().toLowerCase();
+      if (!query) {
+        throw new Error('Please enter your work username or email address.');
+      }
+      if (!password || password.length < 3) {
+        throw new Error('Please enter your password (minimum 3 characters).');
+      }
 
       const availableAgents = initialData.agents || [];
-      let matchedAgent = null;
-
-      if (agentId) {
-        matchedAgent = availableAgents.find(a => a.id === agentId);
-      } else if (email) {
-        matchedAgent = availableAgents.find(
-          a => a.email.toLowerCase() === email.trim().toLowerCase()
+      // Match by exact email or username prefix (e.g. jordan.lee, taylor.w, samira.p)
+      const matchedAgent = availableAgents.find(a => {
+        const emailLower = a.email.toLowerCase();
+        const prefix = emailLower.split('@')[0];
+        const namePart = a.name.toLowerCase();
+        return (
+          emailLower === query ||
+          prefix === query ||
+          namePart === query ||
+          namePart.startsWith(query)
         );
-      }
+      });
 
       const authenticatedUser = matchedAgent
         ? {
@@ -63,8 +74,10 @@ export function AuthProvider({ children }) {
           }
         : {
             id: 'agt-custom',
-            name: email ? email.split('@')[0].replace(/[._]/g, ' ') : 'Support Agent',
-            email: email || 'agent@supportdesk.internal',
+            name: query.includes('@')
+              ? query.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+              : query.replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+            email: query.includes('@') ? query : `${query}@supportdesk.internal`,
             role: 'Support Specialist',
             avatar: '/assets/avatars/avatar-1.svg',
             status: 'Online',

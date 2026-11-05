@@ -48,7 +48,7 @@
 
 .header-page-meta {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   min-width: 0;
 }
 
@@ -62,7 +62,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.15rem 0.5rem;
+  padding: 0.25rem 0.55rem;
   background: var(--charcoal-800);
   border: 1px solid rgba(229, 178, 93, 0.25);
   border-radius: var(--radius-sm);
@@ -84,7 +84,7 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.725rem;
+  font-size: 0.75rem;
   color: var(--sand-500);
   white-space: nowrap;
   overflow: hidden;
@@ -119,13 +119,7 @@
 }
 
 .header-page-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--sand-50);
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
 }
 
 /* ==========================================================================
