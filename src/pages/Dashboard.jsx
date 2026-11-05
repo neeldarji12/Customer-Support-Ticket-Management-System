@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Ticket,
@@ -8,7 +8,6 @@ import {
   Archive,
   AlertOctagon,
   Plus,
-  RotateCcw,
   AlertCircle
 } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
@@ -34,18 +33,27 @@ export default function Dashboard({ onNavigate }) {
     setFilters
   } = useTicketContext() || {};
 
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  // Automatic real-time telemetry synchronization (auto-sync without manual refresh)
+  useEffect(() => {
+    if (!fetchTickets) return;
 
-  const handleRefresh = async () => {
-    if (fetchTickets) {
-      setIsRefreshing(true);
-      try {
-        await fetchTickets();
-      } finally {
-        setTimeout(() => setIsRefreshing(false), 400);
-      }
-    }
-  };
+    // Background auto-refresh polling every 12 seconds
+    const interval = setInterval(() => {
+      fetchTickets().catch(() => {});
+    }, 12000);
+
+    // Immediate auto-sync when browser window or tab regains focus
+    const handleFocus = () => {
+      fetchTickets().catch(() => {});
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [fetchTickets]);
 
   const handleCreate = () => {
     if (onNavigate) {
@@ -140,20 +148,10 @@ export default function Dashboard({ onNavigate }) {
         subtitle="Real-time support telemetry, ticket resolution pipeline, and team capacity."
         actions={
           <div className="dashboard-header-actions">
-            <Button
-              variant="secondary"
-              icon={
-                <RotateCcw
-                  size={15}
-                  strokeWidth={2.2}
-                  className={isRefreshing ? 'spin-animation' : ''}
-                />
-              }
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-            >
-              Refresh
-            </Button>
+            <div className="live-auto-sync-badge" title="Telemetry updates automatically in real time without manual refresh">
+              <span className="live-pulse-dot" />
+              <span>Auto-Sync</span>
+            </div>
             <Button
               variant="primary"
               icon={<Plus size={15} strokeWidth={2.5} />}
@@ -175,7 +173,7 @@ export default function Dashboard({ onNavigate }) {
               <p className="error-banner-desc">{error}</p>
             </div>
           </div>
-          <Button variant="secondary" size="sm" onClick={handleRefresh}>
+          <Button variant="secondary" size="sm" onClick={() => fetchTickets && fetchTickets()}>
             Retry Connection
           </Button>
         </div>

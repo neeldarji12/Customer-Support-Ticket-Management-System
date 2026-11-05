@@ -2,8 +2,16 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { TicketProvider } from './context/TicketContext';
 import { NotificationProvider } from './context/NotificationContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuthContext } from './context/AuthContext';
 import MainLayout from './components/layout/MainLayout';
+
+function ProtectedLayout() {
+  const { isAuthenticated } = useAuthContext();
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+  return <MainLayout />;
+}
 
 // Pages
 import Home from './pages/Home';
@@ -29,8 +37,8 @@ export default function App() {
               <Route path="/home" element={<Navigate to="/" replace />} />
               <Route path="/login" element={<Navigate to="/" replace />} />
 
-              {/* Authenticated Application Console */}
-              <Route element={<MainLayout />}>
+              {/* Authenticated Application Console (Protected) */}
+              <Route element={<ProtectedLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/tickets" element={<Tickets />} />
                 <Route path="/tickets/create" element={<CreateTicket />} />

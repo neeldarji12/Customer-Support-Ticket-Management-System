@@ -57,14 +57,17 @@ function getFallbackDueDate() {
   return new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString();
 }
 
+const EMPTY_INITIAL_DATA = Object.freeze({});
+
 export default function TicketForm({
-  initialData = {},
+  initialData = EMPTY_INITIAL_DATA,
   agents = [],
   onSubmit,
   onCancel,
   isSubmitting = false
 }) {
-  const isEditMode = Boolean(initialData.id);
+  const isEditMode = Boolean(initialData?.id);
+  const initialTicketId = initialData?.id;
 
   // Compute default values from existing ticket (for editing) or empty fields (for creating)
   const defaultValues = {
@@ -89,19 +92,22 @@ export default function TicketForm({
     defaultValues
   });
 
-  // Re-synchronize defaults if initialData changes (e.g. async fetch)
+  // Re-synchronize defaults ONLY if editing an existing ticket and its data is loaded
   useEffect(() => {
-    reset({
-      customerName: initialData.customer?.name || '',
-      customerEmail: initialData.customer?.email || '',
-      title: initialData.title || '',
-      description: initialData.description || '',
-      category: initialData.category || 'TECHNICAL',
-      priority: initialData.priority || 'MEDIUM',
-      assignedAgentId: initialData.assignedAgentId || '',
-      dueDate: toDateInputValue(initialData.dueDate) || ''
-    });
-  }, [initialData, reset]);
+    if (initialTicketId) {
+      reset({
+        customerName: initialData.customer?.name || '',
+        customerEmail: initialData.customer?.email || '',
+        title: initialData.title || '',
+        description: initialData.description || '',
+        category: initialData.category || 'TECHNICAL',
+        priority: initialData.priority || 'MEDIUM',
+        assignedAgentId: initialData.assignedAgentId || '',
+        dueDate: toDateInputValue(initialData.dueDate) || ''
+      });
+    }
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialTicketId, reset]);
 
   const activeAgents = agents.filter(agent => agent.status !== 'INACTIVE');
   const submitting = isSubmitting || formIsSubmitting;

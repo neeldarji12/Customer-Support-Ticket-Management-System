@@ -6,30 +6,16 @@ const AuthContext = createContext(null);
 const STORAGE_KEY = 'cstms_auth_user';
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    if (typeof window === 'undefined' || !window.localStorage) return null;
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        return JSON.parse(stored);
-      }
-    } catch {
-      // ignore
-    }
-    return null;
-  });
-
+  // Fresh page load or refresh always defaults to unauthenticated so default login page opens
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Sync to localStorage
+  // Clear any persisted user on initial mount so page refresh always requires login
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.localStorage) return;
-    if (user) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    } else {
+    if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.removeItem(STORAGE_KEY);
     }
-  }, [user]);
+  }, []);
 
   /**
    * Log in using work username/email and password credentials
