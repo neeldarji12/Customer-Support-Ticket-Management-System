@@ -30,6 +30,7 @@
 @import './components/EmptyState.css';
 
 /* Page Stylesheets */
+@import './pages/Home.css';
 @import './pages/Dashboard.css';
 @import './pages/Tickets.css';
 @import './pages/CreateTicket.css';

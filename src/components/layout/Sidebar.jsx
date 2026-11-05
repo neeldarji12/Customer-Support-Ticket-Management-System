@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useTicketContext } from '../../context/TicketContext';
 import { useNotificationContext } from '../../context/NotificationContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function Sidebar({
   isCollapsed = false,
@@ -23,6 +24,14 @@ export default function Sidebar({
   const navigate = useNavigate();
   const { tickets = [] } = useTicketContext() || {};
   const { unreadCount = 0 } = useNotificationContext() || {};
+  const { user } = useAuthContext();
+
+  const currentUser = user || {
+    name: 'Jordan Lee',
+    role: 'Senior Support Engineer',
+    email: 'jordan.lee@supportdesk.internal',
+    avatar: '/assets/avatars/avatar-1.svg'
+  };
 
   // Count active unresolved tickets
   const activeTicketCount = tickets.filter(t => t.status !== 'CLOSED' && t.status !== 'RESOLVED').length;
@@ -178,26 +187,26 @@ export default function Sidebar({
           }}
           role="button"
           tabIndex={0}
-          title={isCollapsed ? 'Jordan Lee — Senior Support Engineer (Online)' : undefined}
+          title={isCollapsed ? `${currentUser.name} — ${currentUser.role} (Online)` : undefined}
         >
           <div className="avatar-wrapper">
-            <img src="/assets/avatars/avatar-1.svg" alt="Jordan Lee" className="user-avatar" />
+            <img src={currentUser.avatar || '/assets/avatars/avatar-1.svg'} alt={currentUser.name} className="user-avatar" />
             <span className="status-indicator online" title="Status: Online" />
           </div>
 
           {!isCollapsed && (
             <div className="user-info">
               <div className="user-name-row">
-                <span className="user-name">Jordan Lee</span>
+                <span className="user-name">{currentUser.name}</span>
                 <ShieldCheck size={14} className="user-verified-icon" title="Senior Certified Agent" />
               </div>
-              <span className="user-role">Senior Support Engineer</span>
+              <span className="user-role">{currentUser.role}</span>
             </div>
           )}
 
           {isCollapsed && (
             <span className="nav-tooltip user-tooltip" role="tooltip">
-              Jordan Lee · Online
+              {currentUser.name} · Online
             </span>
           )}
         </div>

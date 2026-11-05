@@ -165,7 +165,13 @@ The application interacts with JSON Server on `http://localhost:3001`:
 
 ## 7. Main Features
 
-### 1. Support Tickets Table & Cards
+### 1. Enterprise Home & Authentication Portal
+- **Home Landing Page (`/`):** Dedicated corporate gateway showcasing APPLEN SOLUTIONS branding, core capabilities, SLA matrix, and live telemetry indicators.
+- **Interactive Login Console:** Supports instant single-click Agent Profiles (Jordan Lee, Taylor Wright, Samira Patel) for rapid evaluation or standard corporate work credentials.
+- **Direct Redirection to Dashboard:** Authenticating immediately opens the Executive Dashboard (`/dashboard`) with a personalized welcome toast.
+- **Session Persistence & Sign Out:** Remembers authenticated agent in `localStorage` across refreshes, with quick Sign Out in Header and Home page.
+
+### 2. Support Tickets Table & Cards
 - **9 Core Columns:** Ticket Number (`TKT-xxxx`), Subject, Customer (with avatar fallback), Category, Priority badge, Assigned Agent, Status badge, Due Date (with overdue indicator), Actions dropdown.
 - **Search:** Case-insensitive search across ticket IDs, subjects, customer names, and emails.
 - **Filters & Sorting:** Multivariable filtering by Status, Priority, and Agent; sorting by Newest, Oldest, Due Date Ascending, and Due Date Descending.

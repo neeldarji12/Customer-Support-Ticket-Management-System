@@ -18,11 +18,20 @@ import NotificationBell from '../notifications/NotificationBell';
 import Dropdown from '../common/Dropdown';
 import Button from '../common/Button';
 import { useNotificationContext } from '../../context/NotificationContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function Header({ onToggleMobileMenu }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { addToast } = useNotificationContext() || {};
+  const { user, logout } = useAuthContext();
+
+  const currentUser = user || {
+    name: 'Jordan Lee',
+    role: 'Senior Support Engineer',
+    email: 'jordan.lee@supportdesk.internal',
+    avatar: '/assets/avatars/avatar-1.svg'
+  };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [agentStatus, setAgentStatus] = useState('Online');
@@ -152,9 +161,11 @@ export default function Header({ onToggleMobileMenu }) {
   };
 
   const handleSignOut = () => {
+    logout();
     if (addToast) {
-      addToast('Session saved. Session restored in demo mode.', 'info');
+      addToast('You have been signed out successfully.', 'info');
     }
+    navigate('/');
   };
 
   return (
@@ -241,15 +252,15 @@ export default function Header({ onToggleMobileMenu }) {
           trigger={({ isOpen }) => (
             <div className={`header-user-trigger ${isOpen ? 'active' : ''}`} role="button" tabIndex={0}>
               <div className="header-avatar-wrapper">
-                <img src="/assets/avatars/avatar-1.svg" alt="Jordan Lee" className="header-avatar" />
+                <img src={currentUser.avatar || '/assets/avatars/avatar-1.svg'} alt={currentUser.name} className="header-avatar" />
                 <span
                   className={`status-indicator ${agentStatus.toLowerCase().replace(/\s+/g, '-')}`}
                   title={`Status: ${agentStatus}`}
                 />
               </div>
               <div className="header-user-info">
-                <span className="header-username">Jordan Lee</span>
-                <span className="header-user-role">Agent</span>
+                <span className="header-username">{currentUser.name}</span>
+                <span className="header-user-role">{currentUser.role?.split(' ')[0] || 'Agent'}</span>
               </div>
               <ChevronDown size={14} className={`header-chevron ${isOpen ? 'rotate' : ''}`} />
             </div>
@@ -259,13 +270,13 @@ export default function Header({ onToggleMobileMenu }) {
             <div className="user-profile-menu">
               <div className="profile-menu-header">
                 <div className="profile-avatar-large">
-                  <img src="/assets/avatars/avatar-1.svg" alt="Jordan Lee" />
+                  <img src={currentUser.avatar || '/assets/avatars/avatar-1.svg'} alt={currentUser.name} />
                   <span className={`status-indicator ${agentStatus.toLowerCase().replace(/\s+/g, '-')}`} />
                 </div>
                 <div className="profile-header-text">
-                  <div className="profile-name">Jordan Lee</div>
-                  <div className="profile-email">jordan.lee@supportdesk.internal</div>
-                  <div className="profile-badge">Senior Support Engineer</div>
+                  <div className="profile-name">{currentUser.name}</div>
+                  <div className="profile-email">{currentUser.email}</div>
+                  <div className="profile-badge">{currentUser.role}</div>
                 </div>
               </div>
 
