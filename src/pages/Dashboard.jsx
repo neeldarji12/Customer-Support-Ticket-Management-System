@@ -165,8 +165,8 @@ export default function Dashboard({ onNavigate }) {
         }
       />
 
-      {/* API Error Banner if request failed */}
-      {error && (
+      {/* API Error Banner if request failed and no cached tickets are available */}
+      {error && tickets.length === 0 && (
         <div className="dashboard-error-banner" role="alert">
           <div className="error-banner-content">
             <AlertCircle size={20} className="error-banner-icon" />

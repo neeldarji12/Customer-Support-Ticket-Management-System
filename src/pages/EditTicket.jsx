@@ -21,7 +21,9 @@ export default function EditTicket({ ticketId: propTicketId, onNavigate }) {
   const ticket = tickets.find(t => t.id === effectiveId);
 
   const handleCancel = () => {
-    if (onNavigate) {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else if (onNavigate) {
       onNavigate('ticket-details', effectiveId);
     } else {
       navigate(effectiveId ? `/tickets/${effectiveId}` : '/tickets');
@@ -89,13 +91,14 @@ export default function EditTicket({ ticketId: propTicketId, onNavigate }) {
       <PageHeader
         title={`Edit Ticket ${formattedTicketId}`}
         subtitle={`Modify issue details, priority tier, category classification, or assignees.`}
+        onBack={handleCancel}
         actions={
           <Button
             variant="secondary"
             icon={<ArrowLeft size={14} />}
             onClick={handleCancel}
           >
-            Cancel & Return
+            Back to Previous Page
           </Button>
         }
       />

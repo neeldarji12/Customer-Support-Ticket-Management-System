@@ -91,10 +91,16 @@ export default function Sidebar({
     >
       {/* Brand Header */}
       <div className="sidebar-brand-wrapper">
-        <div className="sidebar-brand" onClick={handleBrandClick} role="button" tabIndex={0}>
+        <div
+          className="sidebar-brand"
+          onClick={isCollapsed ? onToggleCollapse : handleBrandClick}
+          role="button"
+          tabIndex={0}
+          title={isCollapsed ? 'Click to expand sidebar' : 'Go to Dashboard'}
+        >
           {isCollapsed ? (
-            <div className="brand-logo-collapsed" title="APPLEN SOLUTIONS">
-              <svg width="34" height="34" viewBox="0 0 46 46" fill="none">
+            <div className="brand-logo-collapsed">
+              <svg width="32" height="32" viewBox="0 0 46 46" fill="none">
                 <rect width="46" height="46" rx="10" fill="#181B24" stroke="#C98A3C" strokeWidth="1.5" />
                 <path d="M14 34L23 16L32 34" stroke="url(#sidebarGold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M17 29H29" stroke="url(#sidebarGold)" strokeWidth="2.5" strokeLinecap="round"/>
@@ -122,7 +128,7 @@ export default function Sidebar({
           <X size={18} />
         </button>
 
-        {/* Desktop Collapse Toggle Button */}
+        {/* Desktop Collapse / Expand Toggle Button */}
         <button
           type="button"
           className="sidebar-desktop-collapse"

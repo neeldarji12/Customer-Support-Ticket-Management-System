@@ -12,7 +12,8 @@ import {
   Check,
   ChevronRight,
   Home,
-  Circle
+  Circle,
+  ArrowLeft
 } from 'lucide-react';
 import NotificationBell from '../notifications/NotificationBell';
 import Dropdown from '../common/Dropdown';
@@ -182,22 +183,35 @@ export default function Header({ onToggleMobileMenu }) {
         </button>
 
         <div className="header-page-meta">
-          <nav className="header-breadcrumbs" aria-label="Breadcrumb">
-            <Link to="/dashboard" className="breadcrumb-item breadcrumb-home" title="Go to Dashboard">
-              <Home size={13} />
-            </Link>
-            {routeInfo.breadcrumbs.map((crumb, idx) => (
-              <React.Fragment key={crumb.label + idx}>
-                <ChevronRight size={11} className="breadcrumb-separator" />
-                <Link
-                  to={crumb.path}
-                  className={`breadcrumb-item ${idx === routeInfo.breadcrumbs.length - 1 ? 'current' : ''}`}
-                >
-                  {crumb.label}
-                </Link>
-              </React.Fragment>
-            ))}
-          </nav>
+          <div className="header-breadcrumbs-row">
+            {location.pathname !== '/' && location.pathname !== '/dashboard' && (
+              <button
+                type="button"
+                className="header-quick-back-btn"
+                onClick={() => navigate(-1)}
+                title="Go back to previous page"
+              >
+                <ArrowLeft size={12} />
+                <span>Back</span>
+              </button>
+            )}
+            <nav className="header-breadcrumbs" aria-label="Breadcrumb">
+              <Link to="/dashboard" className="breadcrumb-item breadcrumb-home" title="Go to Dashboard">
+                <Home size={13} />
+              </Link>
+              {routeInfo.breadcrumbs.map((crumb, idx) => (
+                <React.Fragment key={crumb.label + idx}>
+                  <ChevronRight size={11} className="breadcrumb-separator" />
+                  <Link
+                    to={crumb.path}
+                    className={`breadcrumb-item ${idx === routeInfo.breadcrumbs.length - 1 ? 'current' : ''}`}
+                  >
+                    {crumb.label}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </nav>
+          </div>
           <h2 className="header-page-title">{routeInfo.title}</h2>
         </div>
       </div>

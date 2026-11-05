@@ -38,3 +38,26 @@
   align-items: center;
   gap: 0.75rem;
 }
+
+.page-header-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  margin-bottom: 0.65rem;
+  background: var(--charcoal-800);
+  border: 1px solid rgba(229, 178, 93, 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--gold-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.page-header-back-button:hover {
+  background: rgba(229, 178, 93, 0.12);
+  border-color: var(--gold-accent);
+  color: var(--sand-50);
+  transform: translateX(-2px);
+}

@@ -52,6 +52,34 @@
   min-width: 0;
 }
 
+.header-breadcrumbs-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.header-quick-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--charcoal-800);
+  border: 1px solid rgba(229, 178, 93, 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--gold-accent);
+  font-size: 0.725rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.header-quick-back-btn:hover {
+  background: rgba(229, 178, 93, 0.15);
+  border-color: var(--gold-accent);
+  color: var(--sand-50);
+  transform: translateX(-2px);
+}
+
 .header-breadcrumbs {
   display: flex;
   align-items: center;

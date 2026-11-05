@@ -24,12 +24,22 @@ export function useTickets() {
     try {
       setLoading(true);
       const data = await ticketApi.getTickets();
-      setTickets(data);
-      setError(null);
-      return data;
+      if (Array.isArray(data)) {
+        setTickets(data);
+        setError(null);
+        return data;
+      }
+      return [];
     } catch (err) {
-      setError(err.message || 'Failed to fetch tickets');
-      throw err;
+      setTickets(prev => {
+        if (prev.length === 0) {
+          setError(err.message || 'Failed to fetch tickets');
+        } else {
+          setError(null);
+        }
+        return prev;
+      });
+      return [];
     } finally {
       setLoading(false);
     }
@@ -47,7 +57,14 @@ export function useTickets() {
       })
       .catch(err => {
         if (isMounted) {
-          setError(err.message || 'Failed to fetch tickets');
+          setTickets(prev => {
+            if (prev.length === 0) {
+              setError(err.message || 'Failed to fetch tickets');
+            } else {
+              setError(null);
+            }
+            return prev;
+          });
           setLoading(false);
         }
       });

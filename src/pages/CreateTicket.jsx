@@ -15,7 +15,9 @@ export default function CreateTicket({ onNavigate }) {
   const [submitting, setSubmitting] = useState(false);
 
   const handleCancel = () => {
-    if (onNavigate) {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else if (onNavigate) {
       onNavigate('tickets');
     } else {
       navigate('/tickets');
@@ -49,6 +51,7 @@ export default function CreateTicket({ onNavigate }) {
       <PageHeader
         title="Create Support Ticket"
         subtitle="Log a new customer inquiry, classify SLA priority, assign an agent, and establish resolution deadlines."
+        onBack={handleCancel}
       />
       <div className="form-card">
         <TicketForm

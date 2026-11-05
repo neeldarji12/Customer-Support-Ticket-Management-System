@@ -56,7 +56,9 @@ export default function TicketDetails({ ticketId: propTicketId, onNavigate }) {
   }, [ticket?.id]);
 
   const handleBack = () => {
-    if (onNavigate) {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else if (onNavigate) {
       onNavigate('tickets');
     } else {
       navigate('/tickets');
@@ -206,14 +208,16 @@ export default function TicketDetails({ ticketId: propTicketId, onNavigate }) {
       <PageHeader
         title={`Ticket ${formattedNumber}`}
         subtitle="Complete customer ticket audit trail, correspondence thread, and assignment management."
+        onBack={handleBack}
         actions={
           <div className="details-header-actions">
             <Button
               variant="secondary"
               icon={<ArrowLeft size={14} />}
               onClick={handleBack}
+              title="Go back to previous page"
             >
-              Back to Tickets
+              Back to Previous Page
             </Button>
             <Button
               variant="primary"
