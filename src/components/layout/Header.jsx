@@ -182,12 +182,43 @@ export default function Header({ onToggleMobileMenu }) {
           <Menu size={20} />
         </button>
 
+        {/* Mobile Brand Link (visible on mobile viewports) */}
+        <Link to="/dashboard" className="header-mobile-brand" title="APPLEN CSTMS Dashboard">
+          <svg width="26" height="26" viewBox="0 0 46 46" fill="none">
+            <rect width="46" height="46" rx="10" fill="#181B24" stroke="#C98A3C" strokeWidth="1.5" />
+            <path d="M14 34L23 16L32 34" stroke="url(#hdrMobileGold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M17 29H29" stroke="url(#hdrMobileGold)" strokeWidth="2.5" strokeLinecap="round"/>
+            <circle cx="23" cy="16" r="2.5" fill="#E5B25D"/>
+            <defs>
+              <linearGradient id="hdrMobileGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#E5B25D" />
+                <stop offset="100%" stopColor="#C98A3C" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span className="header-mobile-brand-name">APPLEN</span>
+        </Link>
+
+        {/* Quick Back Button for Inner Pages on Mobile */}
+        {location.pathname !== '/' && location.pathname !== '/dashboard' && (
+          <button
+            type="button"
+            className="header-quick-back-btn mobile-only-back-btn"
+            onClick={() => navigate(-1)}
+            title="Go back to previous page"
+          >
+            <ArrowLeft size={13} />
+            <span>Back</span>
+          </button>
+        )}
+
+        {/* Desktop Breadcrumbs (hidden on mobile to prevent overlapping) */}
         <div className="header-page-meta">
           <div className="header-breadcrumbs-row">
             {location.pathname !== '/' && location.pathname !== '/dashboard' && (
               <button
                 type="button"
-                className="header-quick-back-btn"
+                className="header-quick-back-btn desktop-only-back-btn"
                 onClick={() => navigate(-1)}
                 title="Go back to previous page"
               >

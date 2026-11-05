@@ -455,6 +455,30 @@
 }
 
 /* ==========================================================================
+   Mobile Brand Mark & Navigation Elements
+   ========================================================================== */
+.header-mobile-brand {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-mobile-brand-name {
+  font-size: 0.825rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #E5B25D 0%, #C98A3C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mobile-only-back-btn {
+  display: none;
+}
+
+/* ==========================================================================
    Responsive Adaptations
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -466,12 +490,8 @@
     display: inline-flex;
   }
 
-  .header-page-meta {
-    max-width: 200px;
-  }
-
   .header-center {
-    max-width: 260px;
+    display: none;
   }
 
   .header-user-info {
@@ -480,15 +500,77 @@
 }
 
 @media (max-width: 768px) {
-  .header-center {
-    display: none;
+  .app-header {
+    height: 56px;
+    padding: 0 0.85rem;
+    gap: 0.5rem;
   }
 
-  .header-create-ticket-btn span:last-child {
-    display: none;
+  .header-left {
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
+  .header-mobile-brand {
+    display: inline-flex;
+  }
+
+  .mobile-only-back-btn {
+    display: inline-flex;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  /* Hide breadcrumbs row completely on mobile to prevent collision and overlapping */
+  .header-page-meta {
+    display: none !important;
+  }
+
+  .header-breadcrumbs {
+    display: none !important;
+  }
+
+  .header-page-title {
+    display: none !important;
+  }
+
+  /* Hide redundant create ticket button in header on mobile - pages have prominent action button */
   .header-create-ticket-btn {
-    padding: 0.4rem 0.6rem;
+    display: none !important;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  .header-chevron {
+    display: none;
+  }
+
+  .header-user-trigger {
+    padding: 0.15rem;
+  }
+
+  .header-avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0 0.65rem;
+  }
+
+  .header-mobile-brand-name {
+    display: none;
+  }
+
+  .mobile-only-back-btn span {
+    display: none;
   }
 }

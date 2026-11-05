@@ -165,9 +165,65 @@
       "content": "Internal note: Checked server logs, OAuth client secret expired at 00:00 UTC. Ops rotation needed.",
       "createdAt": "2026-11-04T09:10:00Z",
       "isInternal": true
+    },
+    {
+      "id": "cmt-1793879981315-ogbu",
+      "ticketId": "TCK-1006",
+      "type": "CUSTOMER_REPLY",
+      "isInternal": false,
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "ok we are sorry for wast time we will slove error in 2 hours",
+      "createdAt": "2026-11-05T11:59:41.315Z"
+    },
+    {
+      "id": "cmt-1793880000894-2g02",
+      "ticketId": "TCK-1006",
+      "type": "INTERNAL_NOTE",
+      "isInternal": true,
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "Checked server logs at timestamp. OAuth client secret expired, rotation required.\nHandover to Tier 2 Engineering: Reproduction steps verified on staging environment.\nCustomer account billing verified against Stripe invoice ledger.",
+      "createdAt": "2026-11-05T12:00:00.894Z"
     }
   ],
   "activities": [
+    {
+      "id": "act-1793880000915-yffb",
+      "ticketId": "TCK-1006",
+      "action": "NOTE_ADDED",
+      "type": "NOTE_ADDED",
+      "previousValue": null,
+      "newValue": "Internal Note",
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "description": "Internal note added by Jordan Lee",
+      "timestamp": "2026-11-05T12:00:00.915Z"
+    },
+    {
+      "id": "act-1793879981358-oucc",
+      "ticketId": "TCK-1006",
+      "action": "REPLY_SENT",
+      "type": "NOTE_ADDED",
+      "previousValue": null,
+      "newValue": "Public Reply",
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "description": "Customer reply sent by Jordan Lee",
+      "timestamp": "2026-11-05T11:59:41.358Z"
+    },
     {
       "id": "act-1793879427093-llmi",
       "ticketId": "TCK-1006",

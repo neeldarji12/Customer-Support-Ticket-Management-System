@@ -81,3 +81,9 @@
     pointer-events: auto;
   }
 }
+
+@media (max-width: 640px) {
+  .app-content-container {
+    padding: 1.15rem 0.85rem;
+  }
+}
