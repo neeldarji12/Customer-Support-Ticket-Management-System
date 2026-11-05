@@ -2,7 +2,7 @@
   "tickets": [
     {
       "id": "TCK-1006",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "title": "do not app and app open lot of time",
       "description": "when i open app load i more and more 5 min to open app",
       "category": "TECHNICAL",
@@ -15,7 +15,7 @@
         "avatar": "/assets/avatars/avatar-1.svg"
       },
       "createdAt": "2026-11-05T11:50:27.055Z",
-      "updatedAt": "2026-11-05T11:50:45.136Z"
+      "updatedAt": "2026-11-05T13:11:25.382Z"
     },
     {
       "id": "TCK-1001",
@@ -191,9 +191,37 @@
       },
       "content": "Checked server logs at timestamp. OAuth client secret expired, rotation required.\nHandover to Tier 2 Engineering: Reproduction steps verified on staging environment.\nCustomer account billing verified against Stripe invoice ledger.",
       "createdAt": "2026-11-05T12:00:00.894Z"
+    },
+    {
+      "id": "cmt-1793884278168-tywy",
+      "ticketId": "TCK-1006",
+      "type": "CUSTOMER_REPLY",
+      "isInternal": false,
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "A fix has been deployed to production. Could you please confirm if this resolves it on your end?",
+      "createdAt": "2026-11-05T13:11:18.168Z"
     }
   ],
   "activities": [
+    {
+      "id": "act-1793884278199-lctt",
+      "ticketId": "TCK-1006",
+      "action": "REPLY_SENT",
+      "type": "NOTE_ADDED",
+      "previousValue": null,
+      "newValue": "Public Reply",
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Support Engineer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "description": "Customer reply sent by Jordan Lee",
+      "timestamp": "2026-11-05T13:11:18.199Z"
+    },
     {
       "id": "act-1793880000915-yffb",
       "ticketId": "TCK-1006",
