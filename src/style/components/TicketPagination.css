@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Ticket Pagination Controls - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.ticket-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.15rem 0.5rem;
+  font-size: 0.825rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pagination-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pagination-info {
+  color: var(--sand-400);
+}
+
+.pagination-info strong {
+  color: var(--sand-50);
+  font-weight: 700;
+}
+
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.page-size-label {
+  font-size: 0.75rem;
+  color: var(--sand-400);
+  font-weight: 500;
+}
+
+.page-size-dropdown {
+  padding: 0.28rem 0.55rem;
+  border: 1px solid var(--charcoal-650);
+  border-radius: var(--radius-xs);
+  background-color: var(--charcoal-900);
+  color: var(--sand-100);
+  font-size: 0.775rem;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.page-size-dropdown:focus {
+  border-color: var(--gold-accent);
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pagination-page-indicator {
+  font-size: 0.8125rem;
+  color: var(--sand-300);
+  padding: 0.35rem 0.75rem;
+  background-color: var(--charcoal-800);
+  border: 1px solid var(--charcoal-700);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+}
+
+.pagination-page-indicator strong {
+  color: var(--gold-accent);
+}
+
+@media (max-width: 600px) {
+  .ticket-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

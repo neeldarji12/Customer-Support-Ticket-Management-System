@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Page Header Component
+   ========================================================================== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--sand-50);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 0.9rem;
+  color: var(--sand-400);
+  margin-top: 0.35rem;
+  font-weight: 400;
+}
+
+.page-breadcrumbs {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--bronze-400);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}

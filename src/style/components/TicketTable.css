@@ -1,0 +1,379 @@
+/* ==========================================================================
+   Ticket Table Component (Enterprise Charcoal & Bronze Data Grid)
+   ========================================================================== */
+
+.ticket-table-wrapper {
+  background: var(--charcoal-800);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--charcoal-700);
+  overflow-x: auto;
+  box-shadow: var(--shadow-card);
+  -webkit-overflow-scrolling: touch;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.ticket-table th {
+  background-color: var(--charcoal-850);
+  padding: 0.95rem 1.15rem;
+  font-weight: 600;
+  color: var(--sand-400);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--charcoal-700);
+  white-space: nowrap;
+}
+
+.ticket-table td {
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+  color: var(--sand-200);
+}
+
+.ticket-table-row {
+  transition: background-color var(--transition-fast);
+  position: relative;
+}
+
+.ticket-table-row:hover {
+  background-color: var(--charcoal-750);
+}
+
+.ticket-table-row:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--gold-accent);
+}
+
+/* 1. Ticket Number Cell */
+.ticket-id-cell {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ticket-code-pill {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  background-color: rgba(229, 178, 93, 0.09);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(229, 178, 93, 0.22);
+  display: inline-block;
+  transition: all var(--transition-fast);
+}
+
+.ticket-id-cell:hover .ticket-code-pill,
+.ticket-code-pill:hover {
+  background-color: var(--gold-accent);
+  color: var(--charcoal-950);
+  border-color: var(--gold-accent);
+}
+
+/* 2. Subject Cell */
+.ticket-info-cell {
+  cursor: pointer;
+  max-width: 280px;
+}
+
+.ticket-row-title {
+  font-weight: 600;
+  color: var(--sand-50);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+  transition: color var(--transition-fast);
+}
+
+.ticket-info-cell:hover .ticket-row-title {
+  color: var(--gold-accent);
+}
+
+.ticket-row-desc-preview {
+  font-size: 0.75rem;
+  color: var(--sand-400);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 280px;
+}
+
+/* 3. Customer Cell */
+.customer-cell {
+  min-width: 170px;
+}
+
+.customer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.customer-avatar-small {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--charcoal-700);
+  border: 1px solid rgba(229, 178, 93, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand-300);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.customer-avatar-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.customer-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sand-100);
+  white-space: nowrap;
+}
+
+.customer-email {
+  font-size: 0.725rem;
+  color: var(--sand-400);
+  white-space: nowrap;
+}
+
+/* 4. Category Tag */
+.category-tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--charcoal-650);
+  color: var(--sand-300);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* 6. Assigned Agent */
+.agent-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--charcoal-650);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.agent-pill-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--bronze-500);
+}
+
+.agent-pill-name {
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--sand-200);
+}
+
+.unassigned-pill {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--charcoal-650);
+  color: var(--sand-500);
+  font-size: 0.75rem;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.unlinked-agent-pill {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  background-color: rgba(251, 146, 60, 0.1);
+  border: 1px dashed rgba(251, 146, 60, 0.3);
+  color: #FB923C;
+  font-size: 0.725rem;
+  white-space: nowrap;
+}
+
+/* 8. Due Date Cell */
+.due-date-cell {
+  white-space: nowrap;
+}
+
+.due-date-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.due-date-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7875rem;
+  color: var(--sand-300);
+}
+
+.due-date-icon {
+  color: var(--sand-400);
+}
+
+.overdue-indicator-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(251, 113, 133, 0.12);
+  color: #FB7185;
+  border: 1px solid rgba(251, 113, 133, 0.3);
+  width: fit-content;
+}
+
+/* 9. Actions Cell */
+.actions-cell {
+  text-align: right;
+  width: 50px;
+}
+
+.btn-icon-more {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--sand-400);
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-icon-more:hover {
+  background-color: var(--charcoal-700);
+  color: var(--gold-accent);
+  border-color: rgba(229, 178, 93, 0.2);
+}
+
+/* ==========================================================================
+   Action Menu Dropdown Styling
+   ========================================================================== */
+.ticket-actions-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem 0;
+  min-width: 190px;
+}
+
+.action-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.55rem 0.95rem;
+  background: transparent;
+  border: none;
+  font-size: 0.8125rem;
+  color: var(--sand-200);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.action-menu-item:hover {
+  background-color: var(--charcoal-750);
+  color: var(--sand-50);
+}
+
+.action-menu-item svg {
+  color: var(--sand-400);
+  transition: color var(--transition-fast);
+}
+
+.action-menu-item:hover svg {
+  color: var(--gold-accent);
+}
+
+.action-menu-divider {
+  height: 1px;
+  background-color: var(--charcoal-700);
+  margin: 0.35rem 0;
+}
+
+.action-menu-section-title {
+  padding: 0.35rem 0.95rem 0.2rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--sand-500);
+  letter-spacing: 0.05em;
+}
+
+.agent-sub-item {
+  font-size: 0.775rem;
+  padding: 0.45rem 0.95rem;
+}
+
+.agent-sub-item.is-active-agent {
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+.agent-item-name {
+  flex: 1;
+}
+
+.agent-item-current {
+  font-size: 0.7rem;
+  color: var(--sand-400);
+}
+
+.action-reopen {
+  color: #34D399;
+  font-weight: 600;
+}
+
+.action-reopen svg {
+  color: #34D399;
+}
+
+.action-delete.text-danger {
+  color: #FB7185;
+}
+
+.action-delete.text-danger svg {
+  color: #FB7185;
+}
+
+.action-delete.text-danger:hover {
+  background-color: rgba(251, 113, 133, 0.12);
+  color: #FECDD3;
+}

@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Activity Timeline Audit Trail - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.activity-timeline-panel {
+  background: var(--charcoal-800);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(229, 178, 93, 0.12);
+  padding: 1.65rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.timeline-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timeline-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-header-title h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-50);
+  margin: 0;
+}
+
+.timeline-count-pill {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--sand-300);
+  background-color: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.empty-timeline-placeholder {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 1px dashed var(--charcoal-700);
+  border-radius: var(--radius-sm);
+}
+
+.empty-timeline-icon {
+  color: var(--sand-500);
+  margin-bottom: 0.85rem;
+}
+
+.empty-timeline-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-200);
+  margin-bottom: 0.35rem;
+}
+
+.empty-timeline-sub {
+  font-size: 0.8rem;
+  color: var(--sand-400);
+  max-width: 360px;
+}
+
+/* Timeline Vertical Track */
+.timeline-vertical-track {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-vertical-track::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold-accent) 0%, var(--charcoal-700) 100%);
+  opacity: 0.45;
+}
+
+.timeline-entry {
+  position: relative;
+  padding-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.timeline-entry:last-child {
+  padding-bottom: 0.5rem;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -2rem;
+  top: 1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--charcoal-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.timeline-entry-content {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.1rem;
+  transition: all var(--transition-fast);
+}
+
+.timeline-entry-content:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+  border-color: rgba(229, 178, 93, 0.18);
+}
+
+.timeline-entry-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-entry-desc {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sand-100);
+}
+
+.timeline-entry-reltime {
+  font-size: 0.725rem;
+  color: var(--gold-accent);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.timeline-entry-abstime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.725rem;
+  color: var(--sand-400);
+}

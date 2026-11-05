@@ -1,0 +1,472 @@
+/* ==========================================================================
+   Header Top Navigation Bar
+   ========================================================================== */
+.app-header {
+  height: var(--header-height);
+  background: rgba(14, 16, 21, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--charcoal-700);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* ==========================================================================
+   Header Left: Mobile Toggle & Breadcrumbs
+   ========================================================================== */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.header-mobile-toggle {
+  display: none;
+  background: var(--charcoal-800);
+  border: 1px solid var(--charcoal-650);
+  color: var(--sand-300);
+  padding: 0.45rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.header-mobile-toggle:hover {
+  background-color: var(--charcoal-700);
+  color: var(--gold-accent);
+  border-color: var(--bronze-500);
+}
+
+.header-page-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.725rem;
+  color: var(--sand-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumb-home {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bronze-400);
+}
+
+.breadcrumb-separator {
+  color: var(--charcoal-600);
+  flex-shrink: 0;
+}
+
+.breadcrumb-item {
+  color: var(--sand-500);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+
+.breadcrumb-item:hover {
+  color: var(--gold-accent);
+}
+
+.breadcrumb-item.current {
+  color: var(--sand-300);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.header-page-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--sand-50);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Header Center: Global Search Bar
+   ========================================================================== */
+.header-center {
+  flex: 1;
+  max-width: 480px;
+}
+
+.header-search-form {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header-search-form .search-icon {
+  position: absolute;
+  left: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--bronze-400);
+  pointer-events: none;
+}
+
+.header-search-input {
+  width: 100%;
+  padding: 0.55rem 2.5rem 0.55rem 2.45rem;
+  border: 1px solid var(--charcoal-650);
+  border-radius: var(--radius-full);
+  font-size: 0.845rem;
+  background-color: var(--charcoal-850);
+  color: var(--sand-100);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.header-search-input::placeholder {
+  color: var(--sand-500);
+}
+
+.header-search-input:focus {
+  background-color: var(--charcoal-800);
+  border-color: var(--bronze-500);
+  box-shadow: 0 0 0 3px rgba(201, 138, 60, 0.16);
+}
+
+.search-shortcut-hint {
+  position: absolute;
+  right: 0.85rem;
+  padding: 0.15rem 0.45rem;
+  background-color: var(--charcoal-700);
+  border: 1px solid var(--charcoal-600);
+  border-radius: var(--radius-xs);
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--sand-400);
+  pointer-events: none;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.85rem;
+  background: none;
+  border: none;
+  color: var(--sand-400);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast);
+}
+
+.search-clear-btn:hover {
+  color: var(--sand-100);
+}
+
+/* ==========================================================================
+   Header Right: Actions, Notifications, User Dropdown
+   ========================================================================== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  flex-shrink: 0;
+}
+
+.header-create-ticket-btn {
+  white-space: nowrap;
+}
+
+/* User Trigger */
+.header-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.header-user-trigger:hover,
+.header-user-trigger.active {
+  background-color: var(--charcoal-800);
+  border-color: var(--charcoal-650);
+}
+
+.header-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.header-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bronze-500);
+  object-fit: cover;
+  background-color: var(--charcoal-850);
+  display: block;
+}
+
+.header-user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.header-username {
+  font-size: 0.845rem;
+  font-weight: 600;
+  color: var(--sand-100);
+  line-height: 1.2;
+}
+
+.header-user-role {
+  font-size: 0.7rem;
+  color: var(--bronze-400);
+  font-weight: 500;
+}
+
+.header-chevron {
+  color: var(--sand-400);
+  transition: transform var(--transition-fast);
+}
+
+.header-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   User Profile Dropdown Menu Panel
+   ========================================================================== */
+.user-profile-menu {
+  width: 300px;
+  background-color: var(--charcoal-800);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--charcoal-650);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(201, 138, 60, 0.12);
+  overflow: hidden;
+}
+
+.profile-menu-header {
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex;
+  gap: 0.85rem;
+  background: linear-gradient(180deg, var(--charcoal-850) 0%, var(--charcoal-800) 100%);
+  border-bottom: 1px solid var(--charcoal-700);
+}
+
+.profile-avatar-large {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.profile-avatar-large img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--gold-accent);
+}
+
+.profile-header-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.profile-name {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--sand-50);
+}
+
+.profile-email {
+  font-size: 0.75rem;
+  color: var(--sand-400);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-badge {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.675rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Availability Status Section */
+.profile-status-section {
+  padding: 0.95rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.profile-section-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--sand-500);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.status-options-grid {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.status-option-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.5rem;
+  background-color: var(--charcoal-850);
+  border: 1px solid var(--charcoal-700);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.status-btn-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sand-300);
+}
+
+.status-option-btn:hover {
+  background-color: var(--charcoal-750);
+  border-color: var(--charcoal-600);
+}
+
+.status-option-btn.active {
+  background-color: rgba(201, 138, 60, 0.16);
+  border-color: var(--bronze-500);
+}
+
+.status-option-btn.active .status-btn-label {
+  color: var(--sand-50);
+}
+
+.status-check-icon {
+  color: var(--gold-accent);
+  margin-left: 0.15rem;
+}
+
+.profile-menu-divider {
+  height: 1px;
+  background-color: var(--charcoal-700);
+}
+
+.profile-menu-links {
+  padding: 0.5rem;
+}
+
+.profile-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: none;
+  border: none;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--sand-200);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.profile-menu-item:hover {
+  background-color: var(--charcoal-750);
+  color: var(--gold-accent);
+}
+
+.profile-menu-footer {
+  padding: 0.5rem;
+}
+
+.profile-signout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: none;
+  border: none;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--danger);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.profile-signout-btn:hover {
+  background-color: var(--danger-light);
+  color: #FFA1AF;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .app-header {
+    padding: 0 1.25rem;
+  }
+
+  .header-mobile-toggle {
+    display: inline-flex;
+  }
+
+  .header-page-meta {
+    max-width: 200px;
+  }
+
+  .header-center {
+    max-width: 260px;
+  }
+
+  .header-user-info {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-center {
+    display: none;
+  }
+
+  .header-create-ticket-btn span:last-child {
+    display: none;
+  }
+
+  .header-create-ticket-btn {
+    padding: 0.4rem 0.6rem;
+  }
+}

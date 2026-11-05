@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Edit Ticket Page - APPLEN SOLUTIONS
+   ========================================================================== */
+.edit-ticket-page {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.edit-ticket-page .form-card {
+  background: var(--charcoal-800);
+  border: 1px solid var(--charcoal-700);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-ticket-page .form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--bronze-gradient);
+  opacity: 0.8;
+}

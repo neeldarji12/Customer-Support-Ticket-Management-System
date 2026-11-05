@@ -1,0 +1,412 @@
+/* ==========================================================================
+   Dashboard Page Stylesheet - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+}
+
+/* Header Action Buttons */
+.dashboard-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* API Error Banner */
+.dashboard-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.35rem;
+  background: linear-gradient(135deg, rgba(251, 113, 133, 0.12) 0%, rgba(30, 20, 25, 0.6) 100%);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.error-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.error-banner-icon {
+  color: #FB7185;
+  flex-shrink: 0;
+}
+
+.error-banner-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FECDD3;
+  margin-bottom: 0.2rem;
+}
+
+.error-banner-desc {
+  font-size: 0.8rem;
+  color: var(--sand-300);
+}
+
+/* 6 Dynamic KPI Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 1400px) {
+  .kpi-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* KPI Skeleton Placeholders */
+.kpi-skeleton-card {
+  background: linear-gradient(145deg, var(--charcoal-800) 0%, #14161F 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--charcoal-700);
+  padding: 1.35rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Charts Grid (Status + Priority) */
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Bottom Grid (Recent Tickets + Agent Workload & Timeline) */
+.dashboard-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 1.5rem;
+}
+
+.bottom-grid-main {
+  min-width: 0;
+}
+
+.bottom-grid-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Recent Tickets Table Component
+   ========================================================================== */
+.recent-tickets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.recent-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  background-color: rgba(229, 178, 93, 0.08);
+  border: 1px solid rgba(229, 178, 93, 0.22);
+  border-radius: var(--radius-sm);
+  color: var(--gold-accent);
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.recent-view-all-btn:hover {
+  background-color: var(--gold-accent);
+  color: var(--charcoal-900);
+  border-color: var(--gold-accent);
+  transform: translateX(2px);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.recent-tickets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.825rem;
+  text-align: left;
+}
+
+.recent-tickets-table th {
+  padding: 0.75rem 0.85rem;
+  color: var(--sand-400);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.725rem;
+  border-bottom: 1px solid var(--charcoal-700);
+  white-space: nowrap;
+}
+
+.recent-tickets-table td {
+  padding: 0.9rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--sand-200);
+  vertical-align: middle;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.clickable-row:hover {
+  background-color: rgba(229, 178, 93, 0.04);
+}
+
+.clickable-row:hover .row-action-arrow {
+  color: var(--gold-accent);
+  transform: translateX(3px);
+}
+
+.ticket-code-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  background-color: rgba(229, 178, 93, 0.09);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(229, 178, 93, 0.2);
+  white-space: nowrap;
+}
+
+.ticket-title-cell {
+  max-width: 220px;
+}
+
+.ticket-title-text {
+  display: block;
+  font-weight: 600;
+  color: var(--sand-100);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.2rem;
+}
+
+.ticket-category-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--sand-400);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.customer-info-box {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.customer-avatar-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--charcoal-700);
+  border: 1px solid rgba(229, 178, 93, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand-300);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.customer-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.customer-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sand-100);
+  white-space: nowrap;
+}
+
+.customer-email {
+  font-size: 0.7rem;
+  color: var(--sand-400);
+  white-space: nowrap;
+}
+
+.ticket-time-text {
+  font-size: 0.75rem;
+  color: var(--sand-400);
+  white-space: nowrap;
+}
+
+.ticket-action-cell {
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+.row-action-arrow {
+  color: var(--sand-500);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+}
+
+/* ==========================================================================
+   Recent Activity Timeline Feed
+   ========================================================================== */
+.activity-timeline-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.timeline-item:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+  border-color: rgba(229, 178, 93, 0.15);
+}
+
+.timeline-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-text-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-desc {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--sand-100);
+}
+
+.timeline-ticket-tag {
+  background: none;
+  border: none;
+  color: var(--gold-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.timeline-ticket-tag:hover {
+  color: #F8D98C;
+}
+
+.timeline-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  color: var(--sand-400);
+}
+
+.activity-skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.activity-skeleton-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .dashboard-charts-grid,
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

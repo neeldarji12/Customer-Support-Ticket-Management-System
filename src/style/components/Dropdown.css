@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Dropdown Component
+   ========================================================================== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  z-index: 55;
+  background-color: var(--charcoal-800);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--charcoal-650);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65), 0 0 16px rgba(201, 138, 60, 0.08);
+  min-width: 175px;
+  overflow: hidden;
+  animation: dropdownPop 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownPop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-right {
+  right: 0;
+}
+
+.dropdown-left {
+  left: 0;
+}
+
+.actions-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  background: none;
+  border: none;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--sand-200);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.actions-menu button:hover {
+  background-color: var(--charcoal-700);
+  color: var(--gold-accent);
+}
+
+.actions-menu button.text-danger {
+  color: var(--danger);
+}
+
+.actions-menu button.text-danger:hover {
+  background-color: var(--danger-light);
+  color: #FFA1AF;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: var(--charcoal-700);
+  margin: 0.35rem 0;
+}

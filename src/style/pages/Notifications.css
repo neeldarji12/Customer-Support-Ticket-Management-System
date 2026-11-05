@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Notifications Center Page - APPLEN SOLUTIONS
+   Enterprise Theme: Dark Charcoal, Warm Neutrals, Bronze & Gold Accents
+   ========================================================================== */
+
+.notifications-page {
+  max-width: 920px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header Action Controls */
+.notifications-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mark-all-btn,
+.clear-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+/* Filter Tabs */
+.notifications-tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--charcoal-700);
+  padding-bottom: 0.25rem;
+}
+
+.notifications-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--sand-400);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: -1px;
+}
+
+.notifications-tab-btn:hover {
+  color: var(--sand-100);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.notifications-tab-btn.active {
+  color: var(--gold-accent);
+  border-bottom-color: var(--gold-accent);
+}
+
+.unread-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-accent);
+  box-shadow: 0 0 6px var(--gold-accent);
+}
+
+.tab-count-badge {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--sand-300);
+}
+
+.tab-count-badge.unread-badge {
+  background: rgba(229, 178, 93, 0.15);
+  color: var(--gold-accent);
+  border: 1px solid rgba(229, 178, 93, 0.25);
+}
+
+/* Notifications List Card */
+.notifications-list-card {
+  background: var(--charcoal-800);
+  border: 1px solid var(--charcoal-700);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Page Empty State */
+.notifications-page-empty {
+  padding: 4.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.notifications-empty-icon-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(229, 178, 93, 0.1);
+  border: 1.5px solid rgba(229, 178, 93, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-accent);
+  box-shadow: 0 0 24px rgba(229, 178, 93, 0.15);
+  margin-bottom: 0.35rem;
+}
+
+.notifications-empty-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sand-100);
+  margin: 0;
+}
+
+.notifications-empty-desc {
+  font-size: 0.85rem;
+  color: var(--sand-400);
+  max-width: 400px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .notifications-page {
+    gap: 1.25rem;
+  }
+
+  .notifications-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .notifications-header-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}

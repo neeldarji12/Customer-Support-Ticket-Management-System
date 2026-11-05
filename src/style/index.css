@@ -1,0 +1,255 @@
+/* ==========================================================================
+   APPLEN SOLUTIONS DESIGN SYSTEM
+   Theme: Sophisticated Dark Charcoal, Warm Neutral & Bronze/Gold Enterprise Palette
+   ========================================================================== */
+
+/* Component Stylesheets */
+@import './components/Common.css';
+@import './components/MainLayout.css';
+@import './components/Sidebar.css';
+@import './components/Header.css';
+@import './components/PageHeader.css';
+@import './components/KPICard.css';
+@import './components/Charts.css';
+@import './components/TicketTable.css';
+@import './components/TicketCard.css';
+@import './components/TicketForm.css';
+@import './components/TicketFilters.css';
+@import './components/TicketBadges.css';
+@import './components/TicketPagination.css';
+@import './components/TicketConversation.css';
+@import './components/Conversation.css';
+@import './components/ActivityTimeline.css';
+@import './components/AssignmentPanel.css';
+@import './components/Notification.css';
+@import './components/Modal.css';
+@import './components/Dropdown.css';
+@import './components/Toast.css';
+@import './components/Loader.css';
+@import './components/Skeleton.css';
+@import './components/EmptyState.css';
+
+/* Page Stylesheets */
+@import './pages/Dashboard.css';
+@import './pages/Tickets.css';
+@import './pages/CreateTicket.css';
+@import './pages/TicketDetails.css';
+@import './pages/EditTicket.css';
+@import './pages/Reports.css';
+@import './pages/Notifications.css';
+@import './pages/Settings.css';
+@import './pages/NotFound.css';
+
+:root {
+  /* --------------------------------------------------------------------------
+     1. Charcoal Scale (Obsidian, Graphite, Dark Slate Foundation)
+     -------------------------------------------------------------------------- */
+  --charcoal-950: #0A0B0E; /* Deepest black-charcoal canvas */
+  --charcoal-900: #0E1015; /* Main application background */
+  --charcoal-850: #13151D; /* Sidebar and header surfaces */
+  --charcoal-800: #181B24; /* Primary cards, modals, and panel surfaces */
+  --charcoal-750: #1E222D; /* Interactive card hover & elevated layers */
+  --charcoal-700: #272C39; /* Dividers, table borders, and standard strokes */
+  --charcoal-650: #323847; /* Input field borders and active outlines */
+  --charcoal-600: #42495B; /* Subtle iconography and placeholder text */
+
+  /* --------------------------------------------------------------------------
+     2. Bronze & Gold Spectrum (Metallic Luxury Accents)
+     -------------------------------------------------------------------------- */
+  --bronze-100: #FCF8F0;
+  --bronze-200: #F7EAD0;
+  --bronze-300: #ECCE9C;
+  --bronze-400: #DDA35F;
+  --bronze-500: #C98A3C; /* Core signature metallic bronze */
+  --bronze-600: #AF7127; /* Deep burnished bronze */
+  --bronze-700: #885217; /* Dark bronze shadow */
+
+  --gold-accent: #E5B25D;  /* Radiant warm gold highlight */
+  --gold-hover: #F2C474;   /* Illuminated gold on hover */
+  --gold-glow: rgba(229, 178, 93, 0.22);
+  --bronze-subtle: rgba(201, 138, 60, 0.12);
+  --bronze-border: rgba(201, 138, 60, 0.28);
+  --bronze-gradient: linear-gradient(135deg, #E5B25D 0%, #C98A3C 60%, #965B1A 100%);
+  --bronze-gradient-subtle: linear-gradient(135deg, rgba(229, 178, 93, 0.12) 0%, rgba(201, 138, 60, 0.05) 100%);
+
+  /* --------------------------------------------------------------------------
+     3. Warm Neutrals (Sand, Linen, Cashmere Typography & Light Tones)
+     -------------------------------------------------------------------------- */
+  --sand-50:  #FDFBF7; /* Pure warm white highlight */
+  --sand-100: #F7F3EC; /* Primary high-contrast text */
+  --sand-200: #ECE4D8; /* Standard body text */
+  --sand-300: #D8CCC0; /* Secondary text and active icons */
+  --sand-400: #B7A89A; /* Muted hints and meta text */
+  --sand-500: #8A7B6E; /* Tertiary descriptions */
+  --sand-600: #5C5147; /* Deep sand divider */
+
+  /* --------------------------------------------------------------------------
+     4. Semantic Functional Role Mappings
+     -------------------------------------------------------------------------- */
+  --bg-app: var(--charcoal-900);
+  --bg-sidebar: var(--charcoal-950);
+  --bg-header: rgba(14, 16, 21, 0.85);
+  --bg-card: var(--charcoal-800);
+  --bg-card-hover: var(--charcoal-750);
+  --bg-card-glass: rgba(24, 27, 36, 0.72);
+  --bg-input: #12141C;
+  --bg-input-focus: #141720;
+  --bg-hover: rgba(255, 255, 255, 0.04);
+  --bg-active: rgba(201, 138, 60, 0.14);
+
+  --border-color: var(--charcoal-700);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-card: rgba(229, 178, 93, 0.14);
+  --border-focus: var(--bronze-500);
+
+  --text-main: var(--sand-100);
+  --text-primary: var(--sand-100);
+  --text-secondary: var(--sand-300);
+  --text-muted: var(--sand-400);
+  --text-light: var(--sand-500);
+  --text-bronze: var(--gold-accent);
+
+  /* Primary Brand Action Colors */
+  --primary: var(--bronze-500);
+  --primary-hover: var(--bronze-400);
+  --primary-light: var(--bronze-subtle);
+  --primary-glow: var(--gold-glow);
+
+  --secondary: var(--sand-400);
+  --secondary-hover: var(--sand-200);
+  --secondary-light: rgba(255, 255, 255, 0.05);
+
+  --danger: #FB7185;
+  --danger-hover: #F43F5E;
+  --danger-light: rgba(251, 113, 133, 0.14);
+
+  --success: #34D399;
+  --success-hover: #10B981;
+  --success-light: rgba(52, 211, 153, 0.14);
+
+  --warning: #FBBF24;
+  --warning-hover: #F59E0B;
+  --warning-light: rgba(251, 191, 36, 0.14);
+
+  --info: #38BDF8;
+  --info-light: rgba(56, 189, 248, 0.14);
+
+  /* --------------------------------------------------------------------------
+     5. Typography & Spacing Scale
+     -------------------------------------------------------------------------- */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 78px;
+  --header-height: 70px;
+
+  --space-3xs: 0.125rem; /* 2px */
+  --space-2xs: 0.25rem;  /* 4px */
+  --space-xs:  0.5rem;   /* 8px */
+  --space-sm:  0.75rem;  /* 12px */
+  --space-md:  1rem;     /* 16px */
+  --space-lg:  1.5rem;   /* 24px */
+  --space-xl:  2rem;     /* 32px */
+  --space-2xl: 2.5rem;   /* 40px */
+  --space-3xl: 3.5rem;   /* 56px */
+
+  /* --------------------------------------------------------------------------
+     6. Border Radii
+     -------------------------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* --------------------------------------------------------------------------
+     7. Elevation & Shadows (Dark Luxury Charcoal with Bronze Ambient Depth)
+     -------------------------------------------------------------------------- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-bronze: 0 0 25px rgba(201, 138, 60, 0.22);
+
+  /* --------------------------------------------------------------------------
+     8. Micro-Transitions & Easing
+     -------------------------------------------------------------------------- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Base Elements & Document Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--charcoal-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--charcoal-700);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bronze-500);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(201, 138, 60, 0.35);
+  color: var(--sand-50);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Accessibility: Respect Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Empty State Component
+   ========================================================================== */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1.75rem;
+  background-color: var(--charcoal-800);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--charcoal-650);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state-icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.85rem;
+  color: var(--bronze-400);
+  opacity: 0.85;
+}
+
+.empty-state-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sand-100);
+  margin-bottom: 0.45rem;
+}
+
+.empty-state-description {
+  font-size: 0.875rem;
+  color: var(--sand-400);
+  max-width: 440px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}

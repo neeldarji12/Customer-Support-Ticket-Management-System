@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Assignment & Triage Control Panel - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.assignment-panel {
+  background: linear-gradient(145deg, var(--charcoal-800) 0%, #151720 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(229, 178, 93, 0.15);
+  padding: 1.65rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.panel-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-50);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.panel-ticket-tag {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  background-color: rgba(229, 178, 93, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(229, 178, 93, 0.25);
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.section-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-label {
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--sand-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.section-label-icon {
+  color: var(--bronze-400);
+}
+
+.status-current-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  background-color: rgba(229, 178, 93, 0.12);
+  color: var(--gold-accent);
+  border: 1px solid rgba(229, 178, 93, 0.25);
+  text-transform: uppercase;
+}
+
+/* Workflow Action Transitions */
+.workflow-transitions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.workflow-quick-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.workflow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.btn-in-progress {
+  background-color: rgba(229, 178, 93, 0.1);
+  color: var(--gold-accent);
+  border-color: rgba(229, 178, 93, 0.25);
+}
+
+.btn-in-progress:hover {
+  background-color: var(--gold-accent);
+  color: var(--charcoal-950);
+  border-color: var(--gold-accent);
+}
+
+.btn-resolve {
+  background-color: rgba(52, 211, 153, 0.1);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.btn-resolve:hover {
+  background-color: #34D399;
+  color: var(--charcoal-950);
+  border-color: #34D399;
+}
+
+.btn-close {
+  background-color: rgba(120, 113, 108, 0.15);
+  color: #A8A29E;
+  border-color: rgba(120, 113, 108, 0.3);
+}
+
+.btn-close:hover {
+  background-color: #78716C;
+  color: var(--sand-50);
+}
+
+.status-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.field-sublabel {
+  font-size: 0.6875rem;
+  color: var(--sand-500);
+  font-weight: 600;
+}
+
+.workflow-guard-hint {
+  font-size: 0.6875rem;
+  color: var(--sand-500);
+  font-style: italic;
+}
+
+/* Panel Select */
+.panel-select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--charcoal-650);
+  border-radius: var(--radius-sm);
+  background-color: var(--charcoal-900);
+  color: var(--sand-100);
+  font-size: 0.825rem;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.panel-select:hover {
+  border-color: rgba(229, 178, 93, 0.35);
+}
+
+.panel-select:focus {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 2px rgba(201, 138, 60, 0.2);
+}
+
+.panel-select option {
+  background-color: var(--charcoal-850);
+  color: var(--sand-100);
+  padding: 0.5rem;
+}
+
+/* Reopen Ticket Box */
+.reopen-action-box {
+  background-color: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.reopen-notice {
+  font-size: 0.8rem;
+  color: #A7F3D0;
+}
+
+.reopen-notice strong {
+  color: #34D399;
+}
+
+.reopen-btn {
+  width: 100%;
+  justify-content: center;
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34D399;
+}
+
+.reopen-btn:hover {
+  background-color: #34D399;
+  color: var(--charcoal-950);
+}
+
+/* Current Agent Card */
+.current-agent-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.agent-avatar-medium {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bronze-500);
+  background-color: var(--charcoal-900);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.current-agent-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.current-agent-name {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--sand-50);
+}
+
+.current-agent-role {
+  font-size: 0.7rem;
+  color: var(--sand-400);
+}
+
+.current-agent-email {
+  font-size: 0.6875rem;
+  color: var(--sand-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Missing / Deleted Agent Card */
+.missing-agent-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background-color: rgba(251, 146, 60, 0.08);
+  border: 1px dashed rgba(251, 146, 60, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.missing-agent-icon {
+  color: #FB923C;
+  flex-shrink: 0;
+}
+
+.missing-agent-hint {
+  font-size: 0.6875rem;
+  color: #FDBA74;
+}
+
+.unassigned-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.85rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--charcoal-650);
+  border-radius: var(--radius-sm);
+  color: var(--sand-400);
+  font-size: 0.7875rem;
+  font-style: italic;
+}
+
+.agent-select-wrapper {
+  margin-top: 0.25rem;
+}
+
+/* SLA Target Resolution Summary */
+.sla-target-box {
+  padding: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sla-date-text {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--sand-100);
+}
+
+.sla-overdue-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #FB7185;
+  background-color: rgba(251, 113, 133, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+  width: fit-content;
+}
+
+.sla-valid-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #34D399;
+  background-color: rgba(52, 211, 153, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  width: fit-content;
+}
+
+/* Panel Footer Actions */
+.panel-footer-actions {
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.edit-shortcut-btn {
+  width: 100%;
+  justify-content: center;
+}

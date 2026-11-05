@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Dashboard Charts & Workload Components - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.chart-card {
+  background: linear-gradient(145deg, var(--charcoal-800) 0%, #14161F 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(229, 178, 93, 0.12);
+  padding: 1.6rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(229, 178, 93, 0.32), transparent);
+  opacity: 0.6;
+  transition: opacity var(--transition-normal);
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 178, 93, 0.28);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(201, 138, 60, 0.1);
+}
+
+.chart-card:hover::before {
+  opacity: 1;
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.chart-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-50);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.chart-subtitle {
+  font-size: 0.775rem;
+  color: var(--sand-400);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.chart-total-pill {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  background-color: rgba(229, 178, 93, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(229, 178, 93, 0.2);
+  white-space: nowrap;
+}
+
+.recharts-wrapper-container {
+  position: relative;
+  width: 100%;
+}
+
+.chart-empty-placeholder {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand-500);
+  font-size: 0.85rem;
+  font-style: italic;
+  border: 1px dashed var(--charcoal-700);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Recharts Custom Tooltips (Dark Charcoal & Bronze Accent)
+   ========================================================================== */
+.recharts-custom-tooltip {
+  background: #181B24;
+  border: 1px solid rgba(229, 178, 93, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(201, 138, 60, 0.12);
+  backdrop-filter: blur(8px);
+  min-width: 130px;
+  pointer-events: none;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.35rem;
+}
+
+.tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.tooltip-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sand-50);
+}
+
+.tooltip-body {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.tooltip-value {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--gold-accent);
+  font-family: var(--font-mono);
+}
+
+.tooltip-percent {
+  font-size: 0.75rem;
+  color: var(--sand-400);
+}
+
+/* Recharts Legend Customization */
+.recharts-default-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 0.75rem !important;
+}
+
+/* ==========================================================================
+   Agent Workload Summary
+   ========================================================================== */
+.agent-workload-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-workload-summary-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--sand-400);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+.agent-workload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.agent-workload-item {
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.agent-workload-item:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+  border-color: rgba(229, 178, 93, 0.2);
+}
+
+.agent-workload-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.agent-avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(229, 178, 93, 0.35);
+  background-color: var(--charcoal-900);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.agent-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.agent-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sand-100);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agent-role {
+  font-size: 0.7rem;
+  color: var(--sand-400);
+  white-space: nowrap;
+}
+
+.agent-ticket-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.workload-progress-bar {
+  height: 5px;
+  background-color: var(--charcoal-900);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--charcoal-700);
+}
+
+.workload-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width var(--transition-smooth);
+}

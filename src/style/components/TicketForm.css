@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Ticket Form Component - APPLEN SOLUTIONS
+   Theme: Sophisticated Charcoal & Warm Bronze Form Controls
+   ========================================================================== */
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* Section Dividers */
+.form-section-header {
+  margin-bottom: 0.35rem;
+}
+
+.form-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-50);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.form-section-desc {
+  font-size: 0.775rem;
+  color: var(--sand-400);
+  margin: 0;
+}
+
+/* Form Grids */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.35rem;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+}
+
+/* Field Container */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  position: relative;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sand-300);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.label-icon {
+  color: var(--bronze-400);
+}
+
+.required-star {
+  color: #FB7185;
+  font-weight: 800;
+}
+
+.optional-tag {
+  color: var(--sand-500);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.label-row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.char-counter {
+  font-size: 0.7rem;
+  color: var(--sand-500);
+  font-family: var(--font-mono);
+}
+
+/* Inputs, Textareas, Selects */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.7rem 0.95rem;
+  background-color: var(--charcoal-900);
+  border: 1px solid var(--charcoal-650);
+  border-radius: var(--radius-sm);
+  color: var(--sand-100);
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--sand-500);
+}
+
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover {
+  border-color: rgba(229, 178, 93, 0.4);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 3px rgba(201, 138, 60, 0.22);
+  background-color: var(--charcoal-850);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.55;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-select option {
+  background-color: var(--charcoal-850);
+  color: var(--sand-100);
+  padding: 0.5rem;
+}
+
+/* Date input styling */
+.date-picker-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(0.3) saturate(2) hue-rotate(5deg);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.date-picker-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Error States */
+.form-field.has-error .form-input,
+.form-field.has-error .form-textarea,
+.form-field.has-error .form-select,
+.input-error {
+  border-color: #FB7185 !important;
+  box-shadow: 0 0 0 2px rgba(251, 113, 133, 0.25) !important;
+  background-color: rgba(251, 113, 133, 0.03);
+}
+
+.field-error-message {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #FB7185;
+  animation: fieldErrorSlideIn 0.2s ease-out;
+}
+
+@keyframes fieldErrorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.field-helper-text {
+  font-size: 0.725rem;
+  color: var(--sand-400);
+  line-height: 1.4;
+  margin-top: 0.15rem;
+}
+
+/* Actions Section */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}

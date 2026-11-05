@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Tickets Management Page - APPLEN SOLUTIONS
+   ========================================================================== */
+
+.tickets-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tickets-controls-card {
+  background: var(--charcoal-800);
+  border: 1px solid rgba(229, 178, 93, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-row-container {
+  width: 100%;
+}
+
+/* Data Table Container vs Mobile Cards */
+.desktop-table-container {
+  display: block;
+}
+
+.mobile-cards-container {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* No Results State Card (when filters return 0) */
+.tickets-no-results-card {
+  background: var(--charcoal-800);
+  border: 1px dashed var(--charcoal-650);
+  border-radius: var(--radius-md);
+  padding: 3.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.no-results-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: rgba(229, 178, 93, 0.08);
+  border: 1px solid rgba(229, 178, 93, 0.2);
+  color: var(--gold-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+}
+
+.no-results-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sand-50);
+  margin-bottom: 0.45rem;
+}
+
+.no-results-desc {
+  font-size: 0.85rem;
+  color: var(--sand-400);
+  max-width: 460px;
+  line-height: 1.55;
+  margin-bottom: 1.35rem;
+}
+
+/* ==========================================================================
+   Responsive Switching
+   ========================================================================== */
+@media (max-width: 860px) {
+  .desktop-table-container {
+    display: none;
+  }
+
+  .mobile-cards-container {
+    display: flex;
+  }
+}

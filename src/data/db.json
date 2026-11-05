@@ -1,0 +1,206 @@
+{
+  "tickets": [
+    {
+      "id": "TCK-1001",
+      "title": "Unable to connect OAuth provider in dashboard",
+      "description": "Users are reporting 500 errors when attempting to authorize Google SSO from the account settings page.",
+      "status": "OPEN",
+      "priority": "HIGH",
+      "category": "AUTHENTICATION",
+      "customer": {
+        "name": "Alex Morgan",
+        "email": "alex.morgan@acme.inc",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "assignedAgentId": "agt-1",
+      "createdAt": "2026-11-04T08:30:00Z",
+      "updatedAt": "2026-11-05T09:15:00Z",
+      "dueDate": "2026-11-06T08:30:00Z"
+    },
+    {
+      "id": "TCK-1002",
+      "title": "Billing discrepancy on Enterprise invoice #482",
+      "description": "The enterprise annual subscription was billed twice for the period of November 2026.",
+      "status": "IN_PROGRESS",
+      "priority": "URGENT",
+      "category": "BILLING",
+      "customer": {
+        "name": "Sarah Chen",
+        "email": "sarah.chen@globex.co",
+        "avatar": "/assets/avatars/avatar-2.svg"
+      },
+      "assignedAgentId": "agt-2",
+      "createdAt": "2026-11-04T11:20:00Z",
+      "updatedAt": "2026-11-05T10:00:00Z",
+      "dueDate": "2026-11-05T11:20:00Z"
+    },
+    {
+      "id": "TCK-1003",
+      "title": "Request for dark mode UI option",
+      "description": "Customer requested dark theme accessibility support for high-contrast viewing at night.",
+      "status": "RESOLVED",
+      "priority": "LOW",
+      "category": "FEATURE_REQUEST",
+      "customer": {
+        "name": "David Kim",
+        "email": "david.k@initech.dev",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "assignedAgentId": "agt-1",
+      "createdAt": "2026-11-02T14:10:00Z",
+      "updatedAt": "2026-11-04T16:45:00Z",
+      "dueDate": "2026-11-07T14:10:00Z"
+    },
+    {
+      "id": "TCK-1004",
+      "title": "Webhook delivery timeouts on batch events",
+      "description": "Outbound webhooks fail with timeout code ETIMEDOUT when payload contains more than 100 records.",
+      "status": "OPEN",
+      "priority": "MEDIUM",
+      "category": "INTEGRATION",
+      "customer": {
+        "name": "Elena Rostova",
+        "email": "elena@techflow.io",
+        "avatar": "/assets/avatars/avatar-2.svg"
+      },
+      "assignedAgentId": "agt-3",
+      "createdAt": "2026-11-05T06:00:00Z",
+      "updatedAt": "2026-11-05T08:00:00Z",
+      "dueDate": "2026-11-08T06:00:00Z"
+    },
+    {
+      "id": "TCK-1005",
+      "title": "Export to CSV truncates long string fields",
+      "description": "Reports exported in CSV format cut off customer comments after 255 characters.",
+      "status": "CLOSED",
+      "priority": "LOW",
+      "category": "REPORTS",
+      "customer": {
+        "name": "Marcus Vance",
+        "email": "marcus.v@umbrella.org",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "assignedAgentId": "agt-2",
+      "createdAt": "2026-10-28T09:00:00Z",
+      "updatedAt": "2026-11-01T12:00:00Z",
+      "dueDate": "2026-11-02T09:00:00Z"
+    }
+  ],
+  "agents": [
+    {
+      "id": "agt-1",
+      "name": "Jordan Lee",
+      "email": "jordan.lee@supportdesk.internal",
+      "role": "Senior Support Engineer",
+      "avatar": "/assets/avatars/avatar-1.svg",
+      "activeTickets": 2
+    },
+    {
+      "id": "agt-2",
+      "name": "Taylor Wright",
+      "email": "taylor.w@supportdesk.internal",
+      "role": "Billing Specialist",
+      "avatar": "/assets/avatars/avatar-2.svg",
+      "activeTickets": 1
+    },
+    {
+      "id": "agt-3",
+      "name": "Samira Patel",
+      "email": "samira.p@supportdesk.internal",
+      "role": "Technical Support Rep",
+      "avatar": "/assets/avatars/avatar-1.svg",
+      "activeTickets": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": "cmt-1",
+      "ticketId": "TCK-1001",
+      "author": {
+        "name": "Alex Morgan",
+        "role": "Customer",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "When clicking 'Login with Google' I get redirected to a blank screen with error 500.",
+      "createdAt": "2026-11-04T08:35:00Z",
+      "isInternal": false
+    },
+    {
+      "id": "cmt-2",
+      "ticketId": "TCK-1001",
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Agent",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "Thanks for reporting Alex! We are investigating the OAuth redirect callback endpoint.",
+      "createdAt": "2026-11-04T09:00:00Z",
+      "isInternal": false
+    },
+    {
+      "id": "cmt-3",
+      "ticketId": "TCK-1001",
+      "author": {
+        "name": "Jordan Lee",
+        "role": "Agent",
+        "avatar": "/assets/avatars/avatar-1.svg"
+      },
+      "content": "Internal note: Checked server logs, OAuth client secret expired at 00:00 UTC. Ops rotation needed.",
+      "createdAt": "2026-11-04T09:10:00Z",
+      "isInternal": true
+    }
+  ],
+  "activities": [
+    {
+      "id": "act-1",
+      "ticketId": "TCK-1001",
+      "type": "TICKET_CREATED",
+      "description": "Ticket created by Alex Morgan",
+      "timestamp": "2026-11-04T08:30:00Z"
+    },
+    {
+      "id": "act-2",
+      "ticketId": "TCK-1001",
+      "type": "AGENT_ASSIGNED",
+      "description": "Assigned to Jordan Lee",
+      "timestamp": "2026-11-04T08:35:00Z"
+    },
+    {
+      "id": "act-3",
+      "ticketId": "TCK-1001",
+      "type": "PRIORITY_CHANGED",
+      "description": "Priority updated to HIGH",
+      "timestamp": "2026-11-04T08:40:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-1",
+      "title": "New Ticket Assigned",
+      "message": "Ticket #TCK-1004 has been assigned to you",
+      "type": "ASSIGNMENT",
+      "read": false,
+      "timestamp": "2026-11-05T06:02:00Z",
+      "ticketId": "TCK-1004"
+    },
+    {
+      "id": "notif-2",
+      "title": "Urgent Priority Escalation",
+      "message": "Ticket #TCK-1002 marked as URGENT priority",
+      "type": "ALERT",
+      "read": false,
+      "timestamp": "2026-11-05T08:30:00Z",
+      "ticketId": "TCK-1002"
+    },
+    {
+      "id": "notif-3",
+      "title": "Customer Replied",
+      "message": "Alex Morgan replied to #TCK-1001",
+      "type": "MESSAGE",
+      "read": true,
+      "timestamp": "2026-11-04T12:00:00Z",
+      "ticketId": "TCK-1001"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
