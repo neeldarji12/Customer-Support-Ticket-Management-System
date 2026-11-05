@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Plus, Search as SearchIcon, RotateCcw } from 'lucide-react';
+import { Plus, Search as SearchIcon, RotateCcw, LayoutGrid, Table } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
 import TicketTable from '../components/tickets/TicketTable';
 import TicketCard from '../components/tickets/TicketCard';
@@ -40,6 +40,21 @@ export default function Tickets({ onNavigate }) {
   const [pageSize, setPageSize] = useState(5);
 
   const [deleteTargetId, setDeleteTargetId] = useState(null);
+
+  // View Mode: 'card' (default) or 'table'
+  const [viewMode, setViewMode] = useState(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return localStorage.getItem('cstms_tickets_view_mode') || 'card';
+    }
+    return 'card';
+  });
+
+  const handleViewModeChange = (mode) => {
+    setViewMode(mode);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('cstms_tickets_view_mode', mode);
+    }
+  };
 
   // Synchronize debounced search to URL search param
   useEffect(() => {
@@ -173,13 +188,38 @@ export default function Tickets({ onNavigate }) {
         title="Support Tickets"
         subtitle="Manage, triage, reassign, and track enterprise customer support inquiries."
         actions={
-          <Button
-            variant="primary"
-            icon={<Plus size={15} strokeWidth={2.5} />}
-            onClick={handleCreate}
-          >
-            Create Ticket
-          </Button>
+          <div className="tickets-header-actions">
+            <div className="view-mode-toggle" role="group" aria-label="Ticket view mode">
+              <button
+                type="button"
+                className={`view-mode-btn ${viewMode === 'card' ? 'active' : ''}`}
+                onClick={() => handleViewModeChange('card')}
+                title="Card View (Default)"
+                aria-pressed={viewMode === 'card'}
+              >
+                <LayoutGrid size={15} />
+                <span>Cards</span>
+              </button>
+              <button
+                type="button"
+                className={`view-mode-btn ${viewMode === 'table' ? 'active' : ''}`}
+                onClick={() => handleViewModeChange('table')}
+                title="Detailed Table View"
+                aria-pressed={viewMode === 'table'}
+              >
+                <Table size={15} />
+                <span>Details / Table</span>
+              </button>
+            </div>
+
+            <Button
+              variant="primary"
+              icon={<Plus size={15} strokeWidth={2.5} />}
+              onClick={handleCreate}
+            >
+              Create Ticket
+            </Button>
+          </div>
         }
       />
 
@@ -235,34 +275,35 @@ export default function Tickets({ onNavigate }) {
         </div>
       ) : (
         <>
-          {/* Desktop/Tablet Enterprise Data Table */}
-          <div className="desktop-table-container">
-            <TicketTable
-              tickets={paginatedTickets}
-              agents={agents}
-              onSelectTicket={handleSelect}
-              onEditTicket={handleEdit}
-              onDeleteTicket={(id) => setDeleteTargetId(id)}
-              onStatusChange={handleStatusChange}
-              onAssignAgent={handleAssignAgent}
-            />
-          </div>
-
-          {/* Responsive Mobile Ticket Cards */}
-          <div className="mobile-cards-container">
-            {paginatedTickets.map(ticket => (
-              <TicketCard
-                key={ticket.id}
-                ticket={ticket}
+          {/* Ticket Display: Card View (Default) or Detailed Table View */}
+          {viewMode === 'card' ? (
+            <div className="ticket-cards-grid">
+              {paginatedTickets.map(ticket => (
+                <TicketCard
+                  key={ticket.id}
+                  ticket={ticket}
+                  agents={agents}
+                  onSelect={handleSelect}
+                  onEdit={handleEdit}
+                  onDelete={(id) => setDeleteTargetId(id)}
+                  onStatusChange={handleStatusChange}
+                  onAssignAgent={handleAssignAgent}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="tickets-table-container">
+              <TicketTable
+                tickets={paginatedTickets}
                 agents={agents}
-                onSelect={handleSelect}
-                onEdit={handleEdit}
-                onDelete={(id) => setDeleteTargetId(id)}
+                onSelectTicket={handleSelect}
+                onEditTicket={handleEdit}
+                onDeleteTicket={(id) => setDeleteTargetId(id)}
                 onStatusChange={handleStatusChange}
                 onAssignAgent={handleAssignAgent}
               />
-            ))}
-          </div>
+            </div>
+          )}
 
           {/* Pagination Controls */}
           <TicketPagination
